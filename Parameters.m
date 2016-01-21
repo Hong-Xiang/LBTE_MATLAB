@@ -1,7 +1,7 @@
 function p = Parameters()
 %
 p = struct;
-p.testname = 'MC-LBTE-Test';
+p.testname = 'Ana-LBTE-Test';
 p.outputFileName = [p.testname,'.mat'];
 
 p.testAnaCase = 0;
@@ -37,11 +37,11 @@ p.ecut = 0;
 
 
 % For MC
-p.nRun = 1e4;
+p.nRun = 1e5;
 p.randseed = 1;
 
 % For LBTE
-p.ne = 30;  % Number of energy groups
+p.ne = 10;  % Number of energy groups
 p.nao = 12;    % Order of FEM angular scheme
 p.nso = 8;     % Order of SH scheme
 p.nI = 100;    % Number of Iterations
@@ -53,11 +53,11 @@ p.maxg = 0.2;
 p.ming = 0.2;
 p.maxsigmaa = 0.1;
 p.minsigmaa = 0.1;
-p.maxsigmas = 1;
-p.minsigmas = 1;
+p.maxsigmas = 0.1;
+p.minsigmas = 0.1;
 p.mine = 0.01;
 p.maxe = 10.01;
-p.cute = 0.5;
+p.cute = 8;
 p.ealpha = 0;
 
 
