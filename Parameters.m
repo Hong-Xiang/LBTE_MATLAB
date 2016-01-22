@@ -4,7 +4,7 @@ p = struct;
 p.testname = 'Ana-LBTE-Test';
 p.outputFileName = [p.testname,'.mat'];
 
-p.testAnaCase = 0;
+p.testAnaCase = 2;
 
 % Space
 p.hx = 10; p.hy = 10; p.hz = 10;
