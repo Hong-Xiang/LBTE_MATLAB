@@ -4,21 +4,29 @@ p = struct;
 p.testname = 'Ana-LBTE-Test';
 p.outputFileName = [p.testname,'.mat'];
 
-p.testAnaCase = 2;
+p.testAnaCase = 0;
 
 % Space
 p.hx = 10; p.hy = 10; p.hz = 10;
 
 % For mesh
-p.nx = 15; p.ny = 15; p.nz = 15;
+p.nx = 45; p.ny = 45; p.nz = 45;
 
 
-% Source
+% Source 
+p.isSourceISO = 0;
 xtmp = -p.hx + p.hx/p.nx : p.hx*2/p.nx : p.hx - p.hx/p.nx;
 nx = numel(xtmp);
-vp = xtmp(ceil(nx/2));
+if p.isSourceISO == 1
+    vp = xtmp(ceil(nx/2));
+    p.spx = vp; p.spy = vp; p.spz = vp;
+else
+    vp0 = xtmp(ceil(nx/3));
+    vp1 = xtmp(ceil(nx/2));
+    p.spx = vp0; p.spy = vp1; p.spz = vp1;
+end
 
-p.spx = vp; p.spy = vp; p.spz = vp;
+
 p.ssx = p.hx/p.nx; p.ssy = p.hy/p.ny; p.ssz = p.hz/p.nz;
 
 % p.spx = 0; p.spy = 0; p.spz = 0;
@@ -26,7 +34,7 @@ p.ssx = p.hx/p.nx; p.ssy = p.hy/p.ny; p.ssz = p.hz/p.nz;
 
 
 p.sdx = 1; p.sdy = 0; p.sdz = 0;
-p.isSourceISO = 1;
+
 % p.ismonoEnergy = 0;
 
 p.se = 10; p.sse = 0; 
@@ -37,27 +45,27 @@ p.ecut = 0;
 
 
 % For MC
-p.nRun = 1e5;
+p.nRun = 1e6;
 p.randseed = 1;
 
 % For LBTE
-p.ne = 10;  % Number of energy groups
+p.ne = 40;  % Number of energy groups
 p.nao = 12;    % Order of FEM angular scheme
 p.nso = 8;     % Order of SH scheme
-p.nI = 100;    % Number of Iterations
+p.nI = 1000;    % Number of Iterations
 p.nIntO = 10; % Number of nodes for integral
 
 %===Process================================================================
 % For HG
-p.maxg = 0.2;
-p.ming = 0.2;
+p.maxg = 0.5;
+p.ming = 0.5;
 p.maxsigmaa = 0.1;
 p.minsigmaa = 0.1;
-p.maxsigmas = 0.1;
-p.minsigmas = 0.1;
+p.maxsigmas = 3;
+p.minsigmas = 3;
 p.mine = 0.01;
 p.maxe = 10.01;
-p.cute = 8;
+p.cute = 0.01;
 p.ealpha = 0;
 
 

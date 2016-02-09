@@ -8,7 +8,7 @@ for l = 0 : para.L
         else
             v = integral(@(x) HG_g(para,x).^l/2.*HG_sigmas(para,x).*(1-esl^2./(x.^2)), esl, esh);
 %             v = integral(@(x) HG_g(para,x).^l/2.*HG_sigmas(para,x).*(2-2*x/esh), esl, esh);
-            v = v/(esh-(esh-esl))*esh*esl;
+%             v = v/(esh-(esh-esl))*esh*esl;
         end
     end    
     v = v / (esh - esl);

@@ -16,7 +16,7 @@ time0 = tic;
 tpre = cputime;
 phinow = zeros(p.na, p.ncell);
 while looped < p.nI
-    sca = p.Ylm' * sigmal * philm;
+    sca = 2 * p.Ylm' * sigmal * philm;
     sor_all = sca + sor;
     pcpp.sigmat =  sigmat;        
     Transport_mex(pcpp, phinow, sor_all, p.ang', bx0, bx1, by0, by1, bz0, bz1);

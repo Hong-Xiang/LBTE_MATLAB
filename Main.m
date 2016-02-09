@@ -1,6 +1,6 @@
 function Res = Main()
  p = Parameters(); 
- Test2Run = {'LBTE','Ana'};
+ Test2Run = {'LBTE','MC'};
  nRun = numel(Test2Run);
  Res = struct;
  Res.p = p;

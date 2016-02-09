@@ -1,4 +1,4 @@
-function psi = AnalyticalSolution(p, x, y, z, mu, xi, eta, e)
+function psi = GetAnaPsiS(p, x, y, z, mu, xi, eta)
 found = 0;
 if p.testAnaCase == 1
     found = 1;
@@ -21,9 +21,16 @@ if p.testAnaCase == 5
     found = 1;
     psi = exp(-p.maxsigmaa*x);
 end
-if p.testAnaCase == 7
+if p.testAnaCase == 6
     found = 1;
-    psi = e.^2;
+    Ylmf = p.Ylm(ilm(1,3),:);
+    Ylmf = Ylmf';
+    if(size(x,3) > 1)
+        Ylmm = repmat(Ylmf, 1, size(x,2), size(x,3));
+    else
+        Ylmm = repmat(Ylmf, 1, size(x,2));
+    end
+    psi = exp(-p.maxsigmaa*x).*Ylmm;    
 end
 assert(found == 1,'Unknown id of analytical solution');
 end

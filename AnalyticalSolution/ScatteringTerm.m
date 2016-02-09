@@ -22,5 +22,9 @@ if p.testAnaCase == 5
     found = 1;
     sca = HG_sigmas(p,e)*2*e.*(1/e-1/p.se)*exp(-p.maxsigmaa*x);
 end
+if p.testAnaCase == 7
+    found = 1;
+    sca = HG_sigmas(p,e)*2*e.*(p.se-e);
+end
 end
 
