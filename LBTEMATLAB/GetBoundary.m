@@ -8,11 +8,11 @@ if  p.testAnaCase == 0
     bz1 = zeros(size(p.bzx));
 else
 %Get boundary flux of all six surfaces of energy group (el, eh]
-    bx0 = GetGroupTerm(p, @AnalyticalSolution, -p.hx*ones(size(p.bxy)), p.bxy, p.bxz, p.bxmu, p.bxxi, p.bxeta, el, eh);
-    bx1 = GetGroupTerm(p, @AnalyticalSolution,  p.hx*ones(size(p.bxy)), p.bxy, p.bxz, p.bxmu, p.bxxi, p.bxeta, el, eh);
-    by0 = GetGroupTerm(p, @AnalyticalSolution, p.byx, -p.hy*ones(size(p.byz)), p.byz, p.bymu, p.byxi, p.byeta, el, eh);
-    by1 = GetGroupTerm(p, @AnalyticalSolution, p.byx,  p.hy*ones(size(p.byz)), p.byz, p.bymu, p.byxi, p.byeta, el, eh);
-    bz0 = GetGroupTerm(p, @AnalyticalSolution, p.bzx, p.bzy, -p.hz*ones(size(p.bzy)), p.bzmu, p.bzxi, p.bzeta, el, eh);    
-    bz1 = GetGroupTerm(p, @AnalyticalSolution, p.bzx, p.bzy,  p.hz*ones(size(p.bzy)), p.bzmu, p.bzxi, p.bzeta, el, eh);    
+    bx0 = GetGroupTerm(p, @AnalyticalSolution, -p.hx*ones(size(p.bxy)), p.bxy, p.bxz, p.bxmu, p.bxxi, p.bxeta, el, eh)/(eh-el);
+    bx1 = GetGroupTerm(p, @AnalyticalSolution,  p.hx*ones(size(p.bxy)), p.bxy, p.bxz, p.bxmu, p.bxxi, p.bxeta, el, eh)/(eh-el);
+    by0 = GetGroupTerm(p, @AnalyticalSolution, p.byx, -p.hy*ones(size(p.byz)), p.byz, p.bymu, p.byxi, p.byeta, el, eh)/(eh-el);
+    by1 = GetGroupTerm(p, @AnalyticalSolution, p.byx,  p.hy*ones(size(p.byz)), p.byz, p.bymu, p.byxi, p.byeta, el, eh)/(eh-el);
+    bz0 = GetGroupTerm(p, @AnalyticalSolution, p.bzx, p.bzy, -p.hz*ones(size(p.bzy)), p.bzmu, p.bzxi, p.bzeta, el, eh)/(eh-el);    
+    bz1 = GetGroupTerm(p, @AnalyticalSolution, p.bzx, p.bzy,  p.hz*ones(size(p.bzy)), p.bzmu, p.bzxi, p.bzeta, el, eh)/(eh-el);    
 end
 end

@@ -7,7 +7,7 @@ p.gS = (p.ming+p.maxg)/2;
 slg = zeros(p.nso+1);
 for l = 0 : p.nso
     for m = -l : l
-        slg(ilm(l,m),ilm(l,m)) = p.sigmasS*p.gS^l/2;
+        slg(ilm(l,m),ilm(l,m)) = p.sigmasS*p.gS^l;
     end
 end
 sor = GetSourceS(p, p.x, p.y, p.z, p.mu, p.xi, p.eta);

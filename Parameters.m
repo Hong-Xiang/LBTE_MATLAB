@@ -10,7 +10,7 @@ p.testAnaCase = 0;
 p.hx = 10; p.hy = 10; p.hz = 10;
 
 % For mesh
-p.nx = 45; p.ny = 45; p.nz = 45;
+p.nx = 25; p.ny = 25; p.nz = 25;
 
 
 % Source 
@@ -49,7 +49,7 @@ p.nRun = 1e6;
 p.randseed = 1;
 
 % For LBTE
-p.ne = 40;  % Number of energy groups
+p.ne = 10;  % Number of energy groups
 p.nao = 12;    % Order of FEM angular scheme
 p.nso = 8;     % Order of SH scheme
 p.nI = 1000;    % Number of Iterations
@@ -57,16 +57,16 @@ p.nIntO = 10; % Number of nodes for integral
 
 %===Process================================================================
 % For HG
-p.maxg = 0.5;
-p.ming = 0.5;
+p.maxg = 0.3;
+p.ming = 0.3;
 p.maxsigmaa = 0.1;
 p.minsigmaa = 0.1;
-p.maxsigmas = 3;
-p.minsigmas = 3;
+p.maxsigmas = 1;
+p.minsigmas = 1;
 p.mine = 0.01;
 p.maxe = 10.01;
-p.cute = 0.01;
-p.ealpha = 0;
+p.cute = 1.0;
+p.ealpha = 1;
 
 
 
@@ -78,13 +78,20 @@ clear scheme;
 
 %Shprical Harmonic Mesh
 p.L = p.nso;
-[nlm, Ylm] = SphericalScheme(p.L, p.ang');
-p.nlm = nlm;
-p.Ylm = Ylm;
+% [nlm, Ylm] = SphericalScheme(p.L, p.ang');
+
+p.nlm = (p.L+1)^2;
+p.Ylm = zeros(p.nlm, p.na);
+for l = 0 : p.L
+    for m = -l : l
+        p.Ylm(ilm(l,m),:) = SphericalHarmonicBasis(p.ang(:,1), p.ang(:,2), p.ang(:,3), l, m);
+    end
+end
+
 clear nlm Ylm;
 
 %Energy Mesh
-p.energy = EnergyGrid(p.ne, p.mine, p.maxe);
+p.energy = EnergyGrid(p.ne, p.cute, p.se);
 
 
 %x, y, z, mu, xi, eta value of na*ncell body

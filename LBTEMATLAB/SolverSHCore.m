@@ -17,7 +17,7 @@ for ie1 = para.ne : -1 :1
     [bx0, bx1, by0, by1, bz0, bz1] = GetBoundary(para, el, eh);
     source1 = zeros(para.nlm, para.ncell);
     for ie2 = ie1+1 : para.ne       
-        source1 = 2*para.slg{ie2,ie1} * phiall{ie2};
+        source1 = para.slg{ie2,ie1} * phiall{ie2};
     end    
     sor = para.Ylm'*source1+source0;
     phiall{ie1} = SolverSHFEMSingleEnergy(para, sor, para.slg{ie1,ie1}, para.txg(ie1), bx0, bx1, by0, by1, bz0, bz1);

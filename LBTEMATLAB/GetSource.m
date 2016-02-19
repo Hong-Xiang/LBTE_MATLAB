@@ -2,6 +2,8 @@ function Sor = GetSource(para, el, eh)
 if para.testAnaCase > 0
     % Analytical
     Sor = GetGroupTerm(para, @SourceTerm, para.x, para.y, para.z, para.mu, para.xi, para.eta, el, eh);
+    Sor = Sor/(eh-el);
+    
 else
     % Point:
     Sor = zeros(para.na,para.nx*para.ny*para.nz);
@@ -9,10 +11,13 @@ else
         ix = findId(para.spx,para.xv);
         iy = findId(para.spy,para.yv);
         iz = findId(para.spz,para.zv);
-        %     ia = findId([para.sdx;para.sdy;para.sdz],para.ang');
+        ia = findId([para.sdx;para.sdy;para.sdz],para.ang');
         ids = id3d2id1d(ix,iy,iz,para.nx,para.ny,para.nz);
-        Sor(:,ids) = 1;
-        %     Sor(ia,ids) = 1;
+        if para.isSourceISO == 1            
+            Sor(:,ids) = 1;
+        else
+            Sor(ia,ids) = 1;
+        end
     end
 end
 

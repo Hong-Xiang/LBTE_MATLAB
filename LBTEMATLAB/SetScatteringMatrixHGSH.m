@@ -4,9 +4,9 @@ for l = 0 : para.L
     if esh < edl
         v = 0;
     else if edh <=esl
-            v = integral2(@(x,y) HG_g(para,x).^l/2.*HG_dsigmasde(para, x, y), esl, esh, edl, edh);
+            v = integral2(@(x,y) HG_g(para,x).^l.*HG_dsigmasde(para, x, y), esl, esh, edl, edh);
         else
-            v = integral(@(x) HG_g(para,x).^l/2.*HG_sigmas(para,x).*(1-esl^2./(x.^2)), esl, esh);
+            v = integral(@(x) HG_g(para,x).^l.*HG_sigmas(para,x).*(1-esl^2./(x.^2)), esl, esh);
 %             v = integral(@(x) HG_g(para,x).^l/2.*HG_sigmas(para,x).*(2-2*x/esh), esl, esh);
 %             v = v/(esh-(esh-esl))*esh*esl;
         end
