@@ -1,7 +1,7 @@
 function p = Parameters()
 %
 p = struct;
-p.testname = 'Ana-LBTE-Test';
+p.testname = 'MC-LBTE-Test';
 p.outputFileName = [p.testname,'.mat'];
 
 p.testAnaCase = 0;
@@ -57,12 +57,12 @@ p.nIntO = 10; % Number of nodes for integral
 
 %===Process================================================================
 % For HG
-p.maxg = 0.3;
-p.ming = 0.3;
+p.maxg = 0.5;
+p.ming = 0;
 p.maxsigmaa = 0.1;
-p.minsigmaa = 0.1;
+p.minsigmaa = 0.01;
 p.maxsigmas = 1;
-p.minsigmas = 1;
+p.minsigmas = 0.1;
 p.mine = 0.01;
 p.maxe = 10.01;
 p.cute = 1.0;
